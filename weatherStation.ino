@@ -1,19 +1,3 @@
-/*
-  SparkFun Inventor's Kit
-  Example sketch 07
-
-  PHOTORESISTOR
-
-  Read a photoresistor (light sensor) to detect "darkness" and turn on an LED when it
-  is "dark" and turn back off again when it is "bright.
-
-  This sketch was written by SparkFun Electronics,
-  with lots of help from the Arduino community.
-  This code is completely free for any use.
-  Visit http://learn.sparkfun.com/products/2 for SIK information.
-  Visit http://www.arduino.cc to learn about the Arduino.
-*/
-
 
 //server
 // Load Wi-Fi library
@@ -21,7 +5,6 @@
 #include <OneWire.h> 
 #include <DallasTemperature.h>
 #include <DHT.h>
-//#include <Adafruit_Sensor.h>
 #include <Adafruit_BMP280.h>
 
 Adafruit_BMP280 bmp; // I2C Interface
@@ -60,15 +43,13 @@ const long timeoutTime = 5000;
 
 
 
-// As usual, we'll create constants to name the pins we're using.
-// This will make it easier to follow the code below.
 
 const int sensorPin = 0;
 const int ledPin = 2;
 
 
 
-// We'll also set up some global variables for the light level a calibration value and
+// set up some global variables for the light level a calibration value and
 //and a raw light value
 int lightCal;
 int lightVal;
@@ -92,13 +73,13 @@ void setup()
                   Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 
 
-  // We'll set up the LED pin to be an output.
+  // set up the LED pin to be an output.
   pinMode(0, INPUT); //light
   pinMode(D4, OUTPUT); //light switch
   pinMode(D3, INPUT); //air temp + humidity
   pinMode(ledPin, OUTPUT);
   lightCal = analogRead(sensorPin);
-  //we will take a single reading from the light sensor and store it in the lightCal
+  //take a single reading from the light sensor and store it in the lightCal
   //variable. This will give us a prelinary value to compare against in the loop
 
 //digitalWrite(LIGHT_SWITCH, LOW);
