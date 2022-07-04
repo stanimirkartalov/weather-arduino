@@ -18,8 +18,7 @@ DallasTemperature sensors(&oneWire);
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
-#define LIGHT_SWITCH D4
-#define WIND_SWITCH D5
+const int sensorPin = 0;const int sensorPin = 0;
 
 
 // Set network credentials
@@ -43,8 +42,7 @@ const long timeoutTime = 5000;
 
 
 
-const int sensorPin = 0;
-const int ledPin = 2;
+
 
 
 
@@ -72,9 +70,7 @@ void setup()
                   Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 
   pinMode(0, INPUT); //light
-  pinMode(D4, OUTPUT); //light switch
   pinMode(D3, INPUT); //air temp + humidity
-  pinMode(ledPin, OUTPUT);
   lightCal = analogRead(sensorPin);
   //take a single reading from the light sensor and store it in the lightCal
   //variable. This will give us a preliminary value to compare against in the loop
@@ -129,10 +125,8 @@ void loop(){
             
             // turns the GPIOs on and off
             if (header.indexOf("GET /data") >= 0) {
-            digitalWrite(LIGHT_SWITCH, HIGH);
             delay(20);
             lightVal = analogRead(sensorPin);
-            digitalWrite(LIGHT_SWITCH, LOW);
             delay(20);
             client.println(lightVal);
 
