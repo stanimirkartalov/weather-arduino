@@ -1,5 +1,4 @@
 
-//server
 // Load Wi-Fi library
 #include <ESP8266WiFi.h>
 #include <OneWire.h> 
@@ -23,7 +22,7 @@ DHT dht(DHTPIN, DHTTYPE);
 #define WIND_SWITCH D5
 
 
-// Replace with your network credentials
+// Set network credentials
 const char* ssid     = ":) 2.4G";
 const char* password = "123654789";
 
@@ -49,7 +48,7 @@ const int ledPin = 2;
 
 
 
-// set up some global variables for the light level a calibration value and
+// set up global variables for the light level a calibration value and
 //and a raw light value
 int lightCal;
 int lightVal;
@@ -72,21 +71,16 @@ void setup()
                   Adafruit_BMP280::FILTER_X16,      /* Filtering. */
                   Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
 
-
-  // set up the LED pin to be an output.
   pinMode(0, INPUT); //light
   pinMode(D4, OUTPUT); //light switch
   pinMode(D3, INPUT); //air temp + humidity
   pinMode(ledPin, OUTPUT);
   lightCal = analogRead(sensorPin);
   //take a single reading from the light sensor and store it in the lightCal
-  //variable. This will give us a prelinary value to compare against in the loop
-
-//digitalWrite(LIGHT_SWITCH, LOW);
-//digitalWrite(WIND_SWITCH, LOW);
+  //variable. This will give us a preliminary value to compare against in the loop
 
   //setup server
-   Serial.print("Connecting to ");
+  Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -106,8 +100,6 @@ void setup()
    //air temp  + humidity
    dht.begin();
 }
-
-
 
 void loop(){
   delay(200);
@@ -189,7 +181,3 @@ void loop(){
     Serial.println("");
   }
 }
-
-
-
-  //  digitalWrite(ledPin, HIGH);
